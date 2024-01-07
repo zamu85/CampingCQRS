@@ -2,7 +2,7 @@
 using Model.Camera;
 using Model.Elettricita;
 
-namespace Model;
+namespace DomainServices;
 
 public interface IUnitOfWork : IDisposable
 {
