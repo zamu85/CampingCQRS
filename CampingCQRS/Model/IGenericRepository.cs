@@ -2,8 +2,6 @@
 
 namespace Model;
 
-public interface IGenericRepository
-{
     public interface IGenericRepository<T> where T : class
     {
         void Add(T entity);
@@ -18,4 +16,3 @@ public interface IGenericRepository
 
         void Remove(T entity);
     }
-}
