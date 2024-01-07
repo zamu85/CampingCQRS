@@ -1,6 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Camera;
+
+[Table("Camere")]
 
 public class Camera
 {
@@ -12,6 +15,7 @@ public class Camera
 
     [Required]
     public bool LettoSingola { get; set; }
+    
     [Required]
     public bool IsBagno { get; set; }
 }

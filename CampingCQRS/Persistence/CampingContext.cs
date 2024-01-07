@@ -23,5 +23,12 @@ namespace Persistence
         public DbSet<Model.Alloggio.AlloggioPiazzola> Piazzole { get; set; }
 
         public DbSet<Model.Alloggio.AlloggioAppartamento> Appartamenti { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+
+
+        }
     }
 }
