@@ -17,5 +17,8 @@ namespace Model.Alloggio
         public string NumeroAlloggio { get; set; }
 
         public bool CaneAmmesso { get; set; }
+
+        public Elettricita.Elettricita Elettricita { get; set; } = null;
+
     }
 }

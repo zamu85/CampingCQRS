@@ -9,8 +9,6 @@ namespace Model.Alloggio
     {
         public bool SoloTenda { get; set; } = false;
 
-        public Elettricita.Elettricita Elettricita { get; set; } = null;
-
         public bool AcquaInPiazzola { get; set; } = false;
     }
 }

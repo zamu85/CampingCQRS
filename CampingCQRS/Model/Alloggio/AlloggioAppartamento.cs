@@ -1,6 +1,6 @@
 namespace Model.Alloggio
 {
-    public class AlloggioStanziale : Alloggio
+    public class AlloggioAppartamento : Alloggio
     {
         public int PostiDisponibili { get; set; }
 
