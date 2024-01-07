@@ -26,7 +26,7 @@ namespace Model.Alloggio
         public bool CaneAmmesso { get; set; }
 
         [ForeignKey("Elettricita")]
-        public Elettricita.Elettricita Elettricita { get; set; } = null;
+        public Elettricita.Elettricita Elettricita { get; set; } = null!;
 
     }
 }
