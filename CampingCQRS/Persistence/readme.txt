@@ -1,0 +1,2 @@
+Any software layer that makes it easier for a program to persist its state is generically called a persistence layer. 
+Most persistence layers will not achieve persistence directly but will use an underlying database management system.
