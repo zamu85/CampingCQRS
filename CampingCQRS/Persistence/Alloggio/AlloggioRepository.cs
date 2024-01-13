@@ -1,8 +1,8 @@
-using Model.Alloggio;
+using Domain.Alloggio;
 
 namespace Persistence.Alloggio;
 
-public class AlloggioRepository : GenericRepository<Model.Alloggio.Alloggio>, IAlloggioRepository
+public class AlloggioRepository : GenericRepository<Domain.Alloggio.Alloggio>, IAlloggioRepository
 {
     public AlloggioRepository(Microsoft.EntityFrameworkCore.IDbContextFactory<CampingContext> context) : base(context)
     {

@@ -14,19 +14,19 @@ namespace Persistence
             Database.EnsureCreated();
         }
 
-        public DbSet<Model.Camera.Camera> Camere { get; set; }
+        public DbSet<Domain.Camera.Camera> Camere { get; set; }
 
-        public DbSet<Model.Elettricita.Elettricita> Elettricita { get; set; }
+        public DbSet<Domain.Elettricita.Elettricita> Elettricita { get; set; }
 
-        public DbSet<Model.Alloggio.Alloggio> Alloggi { get; set; }
+        public DbSet<Domain.Alloggio.Alloggio> Alloggi { get; set; }
 
-        public DbSet<Model.Alloggio.AlloggioPiazzola> Piazzole { get; set; }
+        public DbSet<Domain.Alloggio.AlloggioPiazzola> Piazzole { get; set; }
 
-        public DbSet<Model.Alloggio.AlloggioAppartamento> Appartamenti { get; set; }
+        public DbSet<Domain.Alloggio.AlloggioAppartamento> Appartamenti { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnDomainCreating(DomainBuilder DomainBuilder)
         {
-            
+
 
 
         }

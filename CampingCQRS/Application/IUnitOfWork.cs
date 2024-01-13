@@ -1,8 +1,8 @@
-﻿using Model.Alloggio;
-using Model.Camera;
-using Model.Elettricita;
+﻿using Domain.Alloggio;
+using Domain.Camera;
+using Domain.Elettricita;
 
-namespace DomainServices;
+namespace Application;
 
 public interface IUnitOfWork : IDisposable
 {

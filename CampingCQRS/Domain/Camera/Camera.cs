@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentDomain.DataAnnotations;
+using System.ComponentDomain.DataAnnotations.Schema;
 
-namespace Model.Camera;
+namespace Domain.Camera;
 
 [Table("Camere")]
 
@@ -15,7 +15,7 @@ public class Camera
 
     [Required]
     public bool LettoSingola { get; set; }
-    
+
     [Required]
     public bool IsBagno { get; set; }
 }

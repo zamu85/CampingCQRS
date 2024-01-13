@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DomainServices;
-using Model;
+using Application;
+using Domain;
 
-namespace Services.Camera
+namespace Application.Camera
 {
     public class CameraService
     {

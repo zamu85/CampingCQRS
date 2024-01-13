@@ -1,6 +1,6 @@
-namespace Camping.Models;
+namespace Camping.Domains;
 
-public class ErrorViewModel
+public class ErrorViewDomain
 {
     public string? RequestId { get; set; }
 

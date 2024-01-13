@@ -1,6 +1,6 @@
-namespace Model.Elettricita;
+namespace Domain.Elettricita;
 
 public interface IElettricitaRepository : IGenericRepository<Elettricita>
 {
-    
+
 }

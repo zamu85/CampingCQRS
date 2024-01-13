@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentDomain.DataAnnotations;
+using System.ComponentDomain.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Model.Alloggio
+namespace Domain.Alloggio
 {
     [Table("Alloggi")]
     public class Alloggio

@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentDomain.DataAnnotations;
+using System.ComponentDomain.DataAnnotations.Schema;
 
-namespace Model.Alloggio
+namespace Domain.Alloggio
 {
     public class AlloggioAppartamento : Alloggio
     {
