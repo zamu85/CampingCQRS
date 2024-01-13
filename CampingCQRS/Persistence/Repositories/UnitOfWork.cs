@@ -8,11 +8,11 @@ using Domain;
 using Domain.Alloggio;
 using Domain.Camera;
 using Domain.Elettricita;
-using Persistence.Alloggio;
-using Persistence.Camera;
-using Persistence.Elettricita;
+using Persistence.Repository.Alloggio;
+using Persistence.Repository.Camera;
+using Persistence.Repository.Elettricita;
 
-namespace Persistence.UnitOfWork
+namespace Persistence.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {

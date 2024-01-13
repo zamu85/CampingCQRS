@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using Domain;
 
-namespace Persistence
+namespace Persistence.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {

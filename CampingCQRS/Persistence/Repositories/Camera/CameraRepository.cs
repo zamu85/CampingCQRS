@@ -1,6 +1,7 @@
 using Domain.Camera;
+using Persistence.Repository;
 
-namespace Persistence.Camera;
+namespace Persistence.Repository.Camera;
 
 public class CameraRepository : GenericRepository<Domain.Camera.Camera>, ICameraRepository
 {

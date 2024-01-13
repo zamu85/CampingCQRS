@@ -1,6 +1,7 @@
 using Domain.Alloggio;
+using Persistence.Repository;
 
-namespace Persistence.Alloggio;
+namespace Persistence.Repository.Alloggio;
 
 public class AlloggioRepository : GenericRepository<Domain.Alloggio.Alloggio>, IAlloggioRepository
 {
