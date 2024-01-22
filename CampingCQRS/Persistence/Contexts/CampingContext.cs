@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Domain.Entities.Alloggio;
+using Domain.Entities.Camera;
+using Domain.Entities.Elettricita;
 using Microsoft.EntityFrameworkCore;
-
+using System.Reflection;
 
 namespace Persistence
 {
@@ -14,21 +13,37 @@ namespace Persistence
             Database.EnsureCreated();
         }
 
-        public DbSet<Domain.Camera.Camera> Camere { get; set; }
+        public DbSet<Camera> Camere { get; set; }
 
-        public DbSet<Domain.Elettricita.Elettricita> Elettricita { get; set; }
+        public DbSet<Elettricita> Elettricita { get; set; }
 
-        public DbSet<Domain.Alloggio.Alloggio> Alloggi { get; set; }
+        public DbSet<Alloggio> Alloggi { get; set; }
 
-        public DbSet<Domain.Alloggio.AlloggioPiazzola> Piazzole { get; set; }
+        public DbSet<AlloggioPiazzola> Piazzole { get; set; }
 
-        public DbSet<Domain.Alloggio.AlloggioAppartamento> Appartamenti { get; set; }
+        public DbSet<AlloggioAppartamento> Appartamenti { get; set; }
 
-        protected override void OnDomainCreating(DomainBuilder DomainBuilder)
+        public override int SaveChanges()
         {
+            return SaveChangesAsync().GetAwaiter().GetResult();
+        }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
+            //modelBuilder.Entity<Alloggio>()
+            //    .HasOne(e => e.Elettricita)
+            //    .WithOne(e => e.Alloggio)
+            //    .HasForeignKey<Elettricita>(e => e.Id)
+            //    .IsRequired();
 
+            modelBuilder.Entity<Alloggio>()
+                .HasMany(e => e.NoteAggiuntive)
+                .WithOne(e => e.Alloggio)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

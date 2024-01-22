@@ -1,8 +1,9 @@
-namespace Camping.Domains;
-
-public class ErrorViewDomain
+namespace Camping.Models
 {
-    public string? RequestId { get; set; }
+    public class ErrorViewDomain
+    {
+        public string? RequestId { get; set; }
 
-    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    }
 }

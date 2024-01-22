@@ -1,18 +1,17 @@
-﻿using System.Linq.Expressions;
-
-namespace Domain;
-
-public interface IGenericRepository<T> where T : class
+﻿namespace Domain
 {
-    void Add(T entity);
+    public interface IGenericRepository<T> where T : class
+    {
+        IQueryable<T> Entities { get; }
 
-    void AddRange(IEnumerable<T> entities);
+        Task<T> AddAsync(T entity);
 
-    IEnumerable<T> Find(Expression<Func<T, bool>> expression);
+        Task DeleteAsync(T entity);
 
-    IEnumerable<T> GetAll();
+        Task<List<T>> GetAllAsync();
 
-    T GetById(int id);
+        Task<T> GetByIdAsync(int id);
 
-    void Remove(T entity);
+        Task UpdateAsync(T entity);
+    }
 }

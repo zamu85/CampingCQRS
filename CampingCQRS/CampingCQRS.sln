@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{35A0DFA5-3F97-4607-8BD3-C532105B21F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{35A0DFA5-3F97-4607-8BD3-C532105B21F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{166358B1-3D64-4E6C-A6E4-48D022B2629D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{166358B1-3D64-4E6C-A6E4-48D022B2629D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{754EE282-5493-4E9D-B3CA-7440A39B7AAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{754EE282-5493-4E9D-B3CA-7440A39B7AAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camping", "Camping\Camping.csproj", "{4EC72DA2-7C1F-4334-8B6C-D7EDCA32590C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Camping", "Camping\Camping.csproj", "{4EC72DA2-7C1F-4334-8B6C-D7EDCA32590C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{00C4E1CA-45A1-4C27-92CE-5061641B26F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{00C4E1CA-45A1-4C27-92CE-5061641B26F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{56030F65-B916-48DD-B491-CC6CD923B803}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,8 +41,15 @@ Global
 		{00C4E1CA-45A1-4C27-92CE-5061641B26F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00C4E1CA-45A1-4C27-92CE-5061641B26F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00C4E1CA-45A1-4C27-92CE-5061641B26F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56030F65-B916-48DD-B491-CC6CD923B803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56030F65-B916-48DD-B491-CC6CD923B803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56030F65-B916-48DD-B491-CC6CD923B803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56030F65-B916-48DD-B491-CC6CD923B803}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9023A30-6B71-4677-9247-5DA25E3A08BD}
 	EndGlobalSection
 EndGlobal

@@ -1,52 +1,49 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using Domain;
+﻿using Domain;
+using Domain.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repository
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        protected readonly IDbContextFactory<CampingContext> _context;
+        protected readonly CampingContext _dbContext;
 
-        public GenericRepository(IDbContextFactory<CampingContext> context)
+        public GenericRepository(CampingContext context)
         {
-            _context = context;
+            _dbContext = context;
         }
 
-        public void Add(T entity)
+        public IQueryable<T> Entities => _dbContext.Set<T>();
+
+        public async Task<T> AddAsync(T entity)
         {
-            using var context = _context.CreateDbContext();
-            context.Set<T>().Add(entity);
+            await _dbContext.Set<T>().AddAsync(entity);
+            return entity;
         }
 
-        public void AddRange(IEnumerable<T> entities)
+        public Task DeleteAsync(T entity)
         {
-            using var context = _context.CreateDbContext();
-            context.Set<T>().AddRange(entities);
+            _dbContext.Set<T>().Remove(entity);
+            return Task.CompletedTask;
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetAllAsync()
         {
-            using var context = _context.CreateDbContext();
-            return context.Set<T>().Where(expression);
+            return await _dbContext
+                .Set<T>()
+                .ToListAsync();
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<T> GetByIdAsync(int id)
         {
-            using var context = _context.CreateDbContext();
-            return context.Set<T>().ToList();
+            return await _dbContext.Set<T>().FindAsync(id);
         }
 
-        public T GetById(int id)
+        public Task UpdateAsync(T entity)
         {
-            using var context = _context.CreateDbContext();
-            return context.Set<T>().Find(id);
-        }
-
-        public void Remove(T entity)
-        {
-            using var context = _context.CreateDbContext();
-            context.Set<T>().Remove(entity);
+            T exist = _dbContext.Set<T>().Find(entity.Id);
+            _dbContext.Entry(exist).CurrentValues.SetValues(entity);
+            return Task.CompletedTask;
         }
     }
 }

@@ -1,13 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application;
-using Microsoft.EntityFrameworkCore;
-using Domain;
-using Domain.Alloggio;
-using Domain.Camera;
-using Domain.Elettricita;
+using Application.Interfaces;
 using Persistence.Repository.Alloggio;
 using Persistence.Repository.Camera;
 using Persistence.Repository.Elettricita;
@@ -16,12 +7,11 @@ namespace Persistence.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IDbContextFactory<CampingContext> _contextFactory;
+        private readonly CampingContext _dbContext;
 
-
-        public UnitOfWork(IDbContextFactory<CampingContext> contextFactory)
+        public UnitOfWork(CampingContext contextFactory)
         {
-            _contextFactory = contextFactory;
+            _dbContext = contextFactory;
             CameraRepository = new CameraRepository(contextFactory);
             ElettricitaRepository = new ElettricitaRepository(contextFactory);
             AlloggioRepository = new AlloggioRepository(contextFactory);
@@ -34,14 +24,11 @@ namespace Persistence.Repository
         public IElettricitaRepository ElettricitaRepository { get; private set; }
 
         public void Dispose()
-        {
+        { }
 
-        }
-
-        public int Save()
+        public async Task<int> Save(CancellationToken cancellationToken)
         {
-            using var context = _contextFactory.CreateDbContext();
-            return context.SaveChanges();
+            return await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

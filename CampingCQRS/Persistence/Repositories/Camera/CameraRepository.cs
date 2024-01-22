@@ -1,11 +1,10 @@
-using Domain.Camera;
-using Persistence.Repository;
+using Application.Interfaces;
 
-namespace Persistence.Repository.Camera;
-
-public class CameraRepository : GenericRepository<Domain.Camera.Camera>, ICameraRepository
+namespace Persistence.Repository.Camera
 {
-    public CameraRepository(Microsoft.EntityFrameworkCore.IDbContextFactory<CampingContext> context) : base(context)
+    public class CameraRepository : GenericRepository<Domain.Entities.Camera.Camera>, ICameraRepository
     {
+        public CameraRepository(CampingContext context) : base(context)
+        { }
     }
 }
