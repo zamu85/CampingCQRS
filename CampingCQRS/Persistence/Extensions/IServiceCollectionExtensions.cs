@@ -9,30 +9,28 @@ namespace Persistence.Extensions
 {
     public static class IServiceCollectionExtensions
     {
-        //private static void AddMappings(this IServiceCollection services)
-        //{
-        //    services.AddAutoMapper(Assembly.GetExecutingAssembly());
-        //}
-        public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             string? connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<CampingContext>(
-                options => options.UseSqlite(connectionString));
+            services.AddDbContext<CampingContext>(options => options.UseSqlite(connectionString));
+
+            return services;
         }
 
-        public static void AddPersistenceLayer(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddPersistenceLayer(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddMappings();
-            services.AddDbContext(configuration);
-            services.AddRepositories();
+            services.AddDbContext(configuration).AddRepositories();
+
+            return services;
         }
 
-        private static void AddRepositories(this IServiceCollection services)
+        private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services
-                .AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
-                .AddTransient<ICameraRepository, CameraRepository>();
+            services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
+            services.AddTransient<ICameraRepository, CameraRepository>();
+
+            return services;
         }
     }
 }

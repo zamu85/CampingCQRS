@@ -1,34 +1,48 @@
 using Application.Extensions;
+using Camping;
+using Camping.Extensions;
 using Infrastructure.Extensions;
 using Persistence.Extensions;
+using System.Reflection;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddApplicationLayer();
-builder.Services.AddInfrastructureLayer();
-builder.Services.AddPersistenceLayer(builder.Configuration);
+builder.Services.AddSwaggerGenWithAuth();
 
-builder.Services.AddControllers();
+// Add services to the container.
+builder.Services
+    .AddApplicationLayer()
+    .AddPresentation()
+    .AddInfrastructureLayer()
+    .AddPersistenceLayer(builder.Configuration);
+
+builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
 WebApplication app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
+app.MapEndpoints();
 
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwaggerWithUi();
 }
 
-//app.UseHttpsRedirection();
-//app.UseStaticFiles();
+app.UseExceptionHandler();
 
-//app.UseRouting();
+app.UseAuthentication();
 
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+// REMARK: If you want to use Controllers, you'll need this.
+app.MapControllers();
+
+await app.RunAsync();
+
+// REMARK: Required for functional and integration tests to work.
+namespace Web.Api
+{
+    public partial class Program;
+}
