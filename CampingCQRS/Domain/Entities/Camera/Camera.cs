@@ -20,6 +20,10 @@ namespace Domain.Entities.Camera
         [Required]
         public int Metratura { get; set; }
 
+        public bool HasWater {get; set;}
+        
+        public DateTime CreationDate {get; set;} = DateTime.Now;
+
         public int? AlloggioId { get; set; } = null!;
     }
 }

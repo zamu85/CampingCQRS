@@ -2,15 +2,19 @@ using Domain.Entities.Alloggio;
 using Domain.Entities.Camera;
 using Domain.Entities.Elettricita;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace Persistence
 {
     public class CampingContext : DbContext
     {
+        private readonly int LATEST_DATABASE_VERSION = 1;
+
         public CampingContext(DbContextOptions<CampingContext> options) : base(options)
         {
             Database.EnsureCreated();
+            UpdateDatabaseIfRequired();
         }
 
         public DbSet<Camera> Camere { get; set; }
@@ -44,6 +48,36 @@ namespace Persistence
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
+
+        private void UpdateDatabaseIfRequired()
+        {
+            long currentDbVersion = Database.SqlQueryRaw<long>("PRAGMA user_version")
+                .AsEnumerable().FirstOrDefault();
+            
+            if (LATEST_DATABASE_VERSION > currentDbVersion)
+            {
+                var upgradeToDbVersion = currentDbVersion + 1;
+                switch(upgradeToDbVersion)
+                {
+                    case 1:
+                        UpgradeToOne();
+                        break;
+                    default:
+                        Database.EnsureCreated();
+                        break;
+                }
+            }
+
+            Database.ExecuteSqlRaw($"PRAGMA user_version={LATEST_DATABASE_VERSION}");
+        }
+
+        private void UpgradeToOne()
+        {
+            string alterCommand = $"ALTER TABLE Camere ADD DogFriendly INTEGER;";
+
+            int rows_affected = Database.ExecuteSqlRaw(alterCommand);
+            Debug.WriteLine(rows_affected);
         }
     }
 }
